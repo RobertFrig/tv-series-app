@@ -8,14 +8,14 @@ class SingleSeries extends Component {
 
   componentDidMount() {
     const { id } = this.props.match.params;
-    fetch(`https://api.tvmaze.com/search/shows/${id}/seasons`)
+    fetch(`http://api.tvmaze.com/shows/${id}`)
     .then((response) => response.json())
     .then(json => this.setState({ show: json }))
   }
 
   render() {
     const { show } = this.state;
-
+    console.log(show)
     return (
       <div>
         { show === null && <Loader />}
@@ -23,14 +23,16 @@ class SingleSeries extends Component {
           show !== null 
           &&
           <div>
-            <p>{show.name}</p>
-            <p>Premier Date - {show.premiered}</p>
-            <p>Average Rating - {show.rating.average}</p>
-            <p>Number of Episodes - {show._embedded.episodes.length}</p>
+            <h3>
+              <a href={`https://www.imdb.com/title/${show.externals.imdb}/`} target="blank">
+                {show.name}
+              </a>
+            </h3>
+            <p>Premier Date: {show.premiered}</p>
+            <p>Average Rating: {show.rating.average}</p>
             <p>
               <img alt="Show" src={show.image.medium} />
-            </p>
-            
+            </p>            
           </div>
         }
       </div>

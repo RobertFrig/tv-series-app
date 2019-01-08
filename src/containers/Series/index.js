@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SeriesList from '../../components/SeriesList';
 import Loader from '../../components/Loader';
-import Intro from '../../components/Intro';
+// import Intro from '../../components/Intro';
 
 class Series extends Component {
   state = {
@@ -21,18 +21,19 @@ class Series extends Component {
     const { series, seriesName, isFetching } = this.state;
     return (
       <div>
-        <Intro message="Here you can find all of your most beloved television series"/>
+        {/* <Intro message="Here you can find all of your most beloved television series"/> */}
+
+        { !isFetching && series.length === 0 && seriesName.trim() === ''
+        &&
+        <p>Enter the title of a television series</p>
+        }
+        
         <div>
           <input 
           value={seriesName}
           type="text" 
           onChange={this.onSeriesInputChange} />
         </div>
-
-        { !isFetching && series.length === 0 && seriesName.trim() === ''
-        &&
-        <p>Please enter a series' name into the input</p>
-        }
 
         { !isFetching && series.length === 0 && seriesName.trim() !== ''
         &&
