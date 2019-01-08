@@ -15,7 +15,6 @@ class SingleSeries extends Component {
 
   render() {
     const { show } = this.state;
-    console.log(show)
     return (
       <div>
         { show === null && <Loader />}
