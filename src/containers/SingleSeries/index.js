@@ -29,10 +29,11 @@ class SingleSeries extends Component {
               </a>
             </h3>
             <p>Premier Date: {show.premiered}</p>
-            <p>Average Rating: {show.rating.average}</p>
+            <p>Average IMDB Rating: {show.rating.average}</p>
             <p>
               <img alt="Show" src={show.image.medium} />
-            </p>            
+            </p>
+            <a href='/'>New search</a>            
           </div>
         }
       </div>
