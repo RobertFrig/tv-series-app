@@ -3,18 +3,24 @@ import Loader from '../../components/Loader';
 
 class SingleSeries extends Component {
   state = {
-    show: null
+    show: null,
+    seasons: null
   }
 
   componentDidMount() {
     const { id } = this.props.match.params;
     fetch(`https://api.tvmaze.com/shows/${id}`)
     .then((response) => response.json())
-    .then(json => this.setState({ show: json }))
+    .then(json => this.setState({ show: json }));
+
+    fetch(`https://api.tvmaze.com/shows/${id}/seasons`)
+    .then((response) => response.json())
+    .then(json => this.setState({ seasons: json }));
   }
 
   render() {
-    const { show } = this.state;
+    const { show, seasons } = this.state;
+    console.log(seasons)
     return (
       <div>
         { show === null && <Loader />}
